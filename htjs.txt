@@ -1,0 +1,73 @@
+<div class="titles">
+						<div class="title">Contact Me</div>
+					</div>
+					<div class="box">
+						<div class="name">
+							<i class="fas fa-user"></i>
+							<input type="text" placeholder="Name" id="name">
+						</div>
+						<div class="email">
+							<i class="fas fa-envelope"></i>
+							<input type="text" placeholder="Email" id="email">
+						</div>
+						<div class="message-box">
+							<textarea id="msg" cols="30" rows="10" placeholder="Message"></textarea>
+						</div>
+						<div class="button">
+							<button id="send" class="btn" onclick="message()">Send</button>
+						</div>
+						<div class="message">
+							<div class="success" id="success">Your Message Successfully Sent!</div>
+							<div class="danger" id="danger">Feilds Can't be Empty!</div>
+							<div class="noemail" id="noemail">Enter a valid E-mail!</div>
+							<div class="noemail" id="noname">Enter a valid Name!</div>
+						</div>
+					</div>
+
+
+
+
+danger.style.display = 'none';
+success.style.display = 'none';
+noemail.style.display = 'none';
+noname.style.display = 'none';
+function message(){
+    var Name = document.getElementById('name');
+    var email = document.getElementById('email');
+    var msg = document.getElementById('msg');
+    const success = document.getElementById('success');
+    const danger = document.getElementById('danger');
+    const noemail = document.getElementById('noemail');
+    const noname = document.getElementById('noname');
+    let regex = /^([_\-\.0-9a-zA-Z]+)@([_\-\.0-9a-zA-Z]+)\.([a-zA-Z]){2,7}$/;
+    let rege = /^([a-zA-Z]){2,20}$/;
+    let s = email.value;
+    let n = Name.value;
+   
+    if(Name.value === '' || email.value === '' ||  msg.value === ''){
+        danger.style.display = 'block';
+    }
+    else if(rege.test(n) && regex.test(s)){
+        setTimeout(() => {
+            Name.value = '';
+            email.value = '';
+            msg.value = '';
+        }, 2000);
+        
+        success.style.display = 'block';
+    } else {
+        if(rege.test(n) == false ){
+            noname.style.display = 'block';
+        }
+        if(regex.test(s) == false){
+            noemail.style.display = 'block';
+        }
+        } 
+        setTimeout(() => {
+            danger.style.display = 'none';
+            success.style.display = 'none';
+            noemail.style.display = 'none';
+            noname.style.display = 'none';
+        }, 4000);
+
+}
